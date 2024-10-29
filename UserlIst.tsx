@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import COLORS from "./configs/colors";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // Define types for User data and component state
 interface User {
@@ -84,7 +85,7 @@ const UserList: React.FC = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {loading && (
         <ActivityIndicator size="large" color={COLORS.messageBadge} />
       )}
@@ -94,7 +95,7 @@ const UserList: React.FC = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    borderRadius: 12,
+    borderRadius: 8,
     padding: 10,
     justifyContent: "center",
     alignItems: "center",
