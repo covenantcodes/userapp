@@ -70,7 +70,9 @@ const UserList: React.FC = () => {
         style={styles.button}
         onPress={() => toggleDetails(item.id)}
       >
-        <Text>{item.showDetails ? "Hide Details" : "Show Details"}</Text>
+        <Text style={styles.buttonText}>
+          {item.showDetails ? "Hide Details" : "Show Details"}
+        </Text>
       </TouchableOpacity>
       {item.showDetails && (
         <View style={styles.userDetails}>
@@ -101,6 +103,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: COLORS.white,
+    justifyContent: "center",
   },
   userContainer: {
     marginBottom: 16,
@@ -129,6 +132,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 10,
     backgroundColor: COLORS.primaryColor,
+  },
+  buttonText: {
+    color: COLORS.white,
+    fontFamily: "PoppinsMedium",
   },
 
   bodyText: {
