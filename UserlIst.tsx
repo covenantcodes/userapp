@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import axios from "axios";
 
@@ -67,6 +68,10 @@ const UserList: React.FC = () => {
         title={item.showDetails ? "Hide Details" : "Show Details"}
         onPress={() => toggleDetails(item.id)}
       />
+
+      <TouchableOpacity style={styles.button}>
+        <Text>{item.showDetails ? "Hide Details" : "Show Details"}</Text>
+      </TouchableOpacity>
       {item.showDetails && (
         <View style={styles.userDetails}>
           <Text>Email: {item.email}</Text>
@@ -116,6 +121,8 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "center",
   },
+
+  button: {},
 });
 
 export default UserList;
