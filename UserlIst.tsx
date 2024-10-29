@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import axios from "axios";
+import COLORS from "./configs/colors";
 
 // Define types for User data and component state
 interface User {
@@ -64,18 +65,17 @@ const UserList: React.FC = () => {
   const renderItem = ({ item }: { item: UserWithVisibility }) => (
     <View style={styles.userContainer}>
       <Text style={styles.userName}>{item.name}</Text>
-      <Button
-        title={item.showDetails ? "Hide Details" : "Show Details"}
-        onPress={() => toggleDetails(item.id)}
-      />
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => toggleDetails(item.id)}
+      >
         <Text>{item.showDetails ? "Hide Details" : "Show Details"}</Text>
       </TouchableOpacity>
       {item.showDetails && (
         <View style={styles.userDetails}>
-          <Text>Email: {item.email}</Text>
-          <Text>Phone: {item.phone}</Text>
+          <Text style={styles.bodyText}>Email: {item.email}</Text>
+          <Text style={styles.bodyText}>Phone: {item.phone}</Text>
         </View>
       )}
     </View>
@@ -83,7 +83,9 @@ const UserList: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+      {loading && (
+        <ActivityIndicator size="large" color={COLORS.messageBadge} />
+      )}
       {error && <Text style={styles.errorText}>{error}</Text>}
       <FlatList
         data={users}
@@ -98,21 +100,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#f2f2f2",
+    backgroundColor: COLORS.white,
   },
   userContainer: {
     marginBottom: 16,
     padding: 16,
-    backgroundColor: "#ffffff",
+    backgroundColor: COLORS.white,
     borderRadius: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 2,
   },
   userName: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "PoppinsMedium",
   },
   userDetails: {
     marginTop: 8,
@@ -120,9 +118,22 @@ const styles = StyleSheet.create({
   errorText: {
     color: "red",
     textAlign: "center",
+    fontFamily: "PoppinsMedium",
   },
 
-  button: {},
+  button: {
+    borderRadius: 12,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    marginVertical: 10,
+    backgroundColor: COLORS.primaryColor,
+  },
+
+  bodyText: {
+    fontFamily: "PoppinsRegular",
+  },
 });
 
 export default UserList;
